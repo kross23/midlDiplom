@@ -83,29 +83,30 @@ document.addEventListener("DOMContentLoaded", () => {
 		console.log('mainSl: ', mainSl);
 		console.log('servicesSlider: ', servicesSlider);
 		console.log('slide: ', slide);
-		
+
 		let position = 0,
 			maxPosition,
 			curent = 4,
 			intervalSl = Math.floor(100 / curent);
 		const addBtn = () => {
-			const btnPrew = document.createElement('button'),
-				btnNext = document.createElement('button'),
+			const btnPrew = document.createElement('div'),
+				btnNext = document.createElement('div'),
 				slaiderElem = document.createElement('div'),
 				rElem = document.createElement('div');
-				rElem.classList.add('slaider_class');
-				slaiderElem.classList.add('services-slider');
-				slide.forEach((item)=>{
-					rElem.append(item);
-				});
-				slaiderElem.append(rElem);
+			rElem.classList.add('slaider_class');//
+			slaiderElem.classList.add('services-slider');//slaider_class
+			slide.forEach((item) => {
+				item.classList.add('slaider_item');
+				rElem.append(item);
+			});
+			slaiderElem.append(rElem);
 
-				mainSl.appendChild(slaiderElem);
+			mainSl.appendChild(slaiderElem);
 
-				console.log('slaiderElem: ', slaiderElem);
+			console.log('slaiderElem: ', slaiderElem);
 
 			//	servicesSlider = document.querySelector('.services-slider');
-			servicesSlider.parentNode.removeChild(servicesSlider);//element.parentNode.removeChild(element);
+			servicesSlider.parentNode.removeChild(servicesSlider); //element.parentNode.removeChild(element);
 
 			btnNext.classList.add('slider-arrow');
 			btnPrew.classList.add('slider-arrow');
@@ -123,19 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		console.log('btnNext: ', btnNext);
 		const btnPrew = mainSl.querySelector('.prev');
 
-
-		const start = () => {
-			mainSl.classList.add('sliderSl');
-			servicesSlider.classList.add('slaider_class');
-
-
-			
-			slide.forEach(element => {
-				element.classList.add('slaider_item');
-			});
-		};
-		start();
-
 		const addStyle = () => {
 			const style = document.createElement('style');
 			style.id = 'slider-style';
@@ -146,14 +134,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			.slaider_class{
 				transition: transform 0.6s ease;
 				will-change: transform;
-				display: flex; 
-				
-			
+				display: flex;
+				position: relative;
 			}
 			.slaider_item{
-				display: inline;
-				flex : 0 0 ${intervalSl}%;
-				
+				flex: 0 0 10%;
 			}
 		
 			`;
@@ -163,15 +148,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		const prevSl = () => {
 			--position;
-			if(position<0){
+			if (position < 0) {
 				position = 0;
 			}
-		 servicesSlider.style.transform = `translateX(-${position * intervalSl}%)`;
+			servicesSlider.style.transform = `translateX(-${position * intervalSl}%)`;
 			console.log('position: ', position);
 		}
 		const nextSl = () => {
 			++position;
-			if(position>6){
+			if (position > 6) {
 				position = 6;
 			}
 			servicesSlider.style.transform = `translateX(-${position * intervalSl}%)`;
