@@ -86,15 +86,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		let position = 0,
 			maxPosition,
-			curent = 4,
+			curent = 11,
 			intervalSl = Math.floor(100 / curent);
+
 		const addBtn = () => {
 			const btnPrew = document.createElement('div'),
 				btnNext = document.createElement('div'),
 				slaiderElem = document.createElement('div'),
 				rElem = document.createElement('div');
 			rElem.classList.add('slaider_class');//
-			slaiderElem.classList.add('services-slider');//slaider_class
+			slaiderElem.classList.add('services-slider');//slaider_clas
+			slaiderElem.style.overflow = 'hidden';
+			slaiderElem.style.position = 'relative';
 			slide.forEach((item) => {
 				item.classList.add('slaider_item');
 				rElem.append(item);
@@ -136,22 +139,24 @@ document.addEventListener("DOMContentLoaded", () => {
 				will-change: transform;
 				display: flex;
 				position: relative;
+				background-color:gren;
+				
 			}
 			.slaider_item{
-				flex: 0 0 10%;
+				flex: 0 0 9.53%;
 			}
 		
 			`;
 			document.head.appendChild(style);
 		};
 		addStyle();
-
+		 const dass = document.querySelector('.slaider_class');
 		const prevSl = () => {
 			--position;
 			if (position < 0) {
 				position = 0;
 			}
-			servicesSlider.style.transform = `translateX(-${position * intervalSl}%)`;
+			dass.style.transform = `translateX(-${position * intervalSl}%)`;
 			console.log('position: ', position);
 		}
 		const nextSl = () => {
@@ -159,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (position > 6) {
 				position = 6;
 			}
-			servicesSlider.style.transform = `translateX(-${position * intervalSl}%)`;
+			dass.style.transform = `translateX(-${position * intervalSl}%)`;
 			console.log('position: ', position);
 		}
 
