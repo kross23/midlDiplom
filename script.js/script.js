@@ -90,17 +90,33 @@ document.addEventListener("DOMContentLoaded", () => {
 			intervalSl = Math.floor(100 / curent);
 		const addBtn = () => {
 			const btnPrew = document.createElement('button'),
-				btnNext = document.createElement('button');
-			btnNext.classList.add('services-slider');
-			btnPrew.classList.add('services-slider'); //btnPrew//services-slider
+				btnNext = document.createElement('button'),
+				slaiderElem = document.createElement('div'),
+				rElem = document.createElement('div');
+				rElem.classList.add('slaider_class');
+				slaiderElem.classList.add('services-slider');
+				slide.forEach((item)=>{
+					rElem.append(item);
+				});
+				slaiderElem.append(rElem);
+
+				mainSl.appendChild(slaiderElem);
+
+				console.log('slaiderElem: ', slaiderElem);
+
+			//	servicesSlider = document.querySelector('.services-slider');
+			servicesSlider.parentNode.removeChild(servicesSlider);//element.parentNode.removeChild(element);
+
 			btnNext.classList.add('slider-arrow');
 			btnPrew.classList.add('slider-arrow');
 			btnNext.classList.add('next');
 			btnPrew.classList.add('prev');
 			btnNext.innerHTML = '<span>></span>';
 			btnPrew.innerHTML = '<span><</span>';
-			mainSl.append(btnPrew);
-			mainSl.append(btnNext);
+			slaiderElem.appendChild(btnPrew);
+			slaiderElem.append(btnNext);
+
+
 		};
 		addBtn();
 		const btnNext = mainSl.querySelector('.next');
@@ -111,6 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		const start = () => {
 			mainSl.classList.add('sliderSl');
 			servicesSlider.classList.add('slaider_class');
+
+
+			
 			slide.forEach(element => {
 				element.classList.add('slaider_item');
 			});
@@ -126,17 +145,22 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 			.slaider_class{
 				transition: transform 0.6s ease;
-				will-change: transform; 
+				will-change: transform;
+				display: flex; 
+				
 			
 			}
 			.slaider_item{
+				display: inline;
 				flex : 0 0 ${intervalSl}%;
 				
 			}
+		
 			`;
 			document.head.appendChild(style);
 		};
 		addStyle();
+
 		const prevSl = () => {
 			--position;
 			if(position<0){
