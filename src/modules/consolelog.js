@@ -1,4 +1,4 @@
 const consolelog = () => {
-    console.log('вебпак настроен');
+    return 'вебпак настроен';
 }
 export default consolelog ;
